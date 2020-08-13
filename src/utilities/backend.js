@@ -1,6 +1,6 @@
 import axios from "axios";
 import cookie from "./cookie";
-const baseURL = "http://localhost:3000";
+const baseURL = "http://13.59.245.222:3000";
 //auth
 export const signin = async (signinUser) => {
   console.log(signinUser);

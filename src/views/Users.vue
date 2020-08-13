@@ -21,12 +21,12 @@ export default {
       },
       {
         name: "Heng Mouyleng",
-        department: "Admin",
+        role: "Admin",
         id: "2"
       },
       {
         name: "Nareth MarchVenmey",
-        department: "Employee",
+        role: "Employee",
         id: "3"
       }
     ],
