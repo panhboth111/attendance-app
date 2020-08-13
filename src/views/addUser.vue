@@ -4,9 +4,9 @@
       <v-container>
         <v-btn color="red" dark small link to="/users">back</v-btn>
         <v-form class="ma-12" @submit.prevent="addUser">
-          <v-text-field label="name" outlined dense v-model="user.name"></v-text-field>
-          <v-text-field label="email" outlined dense v-model="user.email"></v-text-field>
-          <v-text-field label="password" outlined dense v-model="user.pwd"></v-text-field>
+          <v-text-field label="name" outlined dense v-model="user.name" required></v-text-field>
+          <v-text-field label="email" outlined dense v-model="user.email" required></v-text-field>
+          <v-text-field label="password" outlined dense v-model="user.pwd" required></v-text-field>
           <v-switch label="admin?" v-model="user.admin"></v-switch>
           <v-btn color="blue" block dark small type="submit">SUBMIT</v-btn>
         </v-form>
@@ -28,6 +28,10 @@ export default {
   }),
   methods: {
     async addUser() {
+      if (this.user.pwd.length < 4) {
+        alert("Password must contain at least 4 characters");
+        return;
+      }
       await createUser(this.user);
     }
   }

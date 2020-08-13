@@ -5,8 +5,8 @@ const baseURL = "http://localhost:3000";
 export const signin = async (signinUser) => {
   console.log(signinUser);
   const response = await axios.post(`${baseURL}/auth/login`, signinUser);
-  console.log(response);
-  if (response.status == 200) {
+  alert(response.data.message);
+  if (response.data.success) {
     cookie.setCookie("auth-token", response.data.token, 30); //window.localStorage.setItem("auth-token",token)
     localStorage.setItem("LastLogged", Date.now());
     window.location.replace("/");
@@ -48,7 +48,8 @@ export const checkOut = async () => {
 
 export const createUser = async (newUser) => {
   const data = await makePostRequest("/admin/user/add", newUser);
-  console.log(data);
+  alert(data.message);
+  if (data.success) window.location.replace("/users");
   return data;
 };
 //use these when u need to use Authorization Bearer (access private routes)

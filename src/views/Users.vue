@@ -13,23 +13,7 @@ export default {
   name: "Home",
   components: { Datatable },
   data: () => ({
-    users: [
-      {
-        name: "Neak Panhboth",
-        role: "Alpha Admin",
-        id: "1"
-      },
-      {
-        name: "Heng Mouyleng",
-        department: "Admin",
-        id: "2"
-      },
-      {
-        name: "Nareth MarchVenmey",
-        department: "Employee",
-        id: "3"
-      }
-    ],
+    users: [],
     headers: [
       { text: "id", value: "id" },
       { text: "name", value: "name" },
