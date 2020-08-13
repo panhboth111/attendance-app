@@ -1,12 +1,6 @@
 <template>
   <v-container>
-    <v-navigation-drawer
-      v-model="drawer"
-      dark
-      app
-      v-if="$route.name !== 'login'"
-      :src="sidebar"
-    >
+    <v-navigation-drawer v-model="drawer" dark app v-if="$route.name !== 'login'" :src="sidebar">
       <v-list nav dense class="display-1">
         <div class="text-center">
           <span class="white--text font-weight-light">DASH</span>
@@ -19,32 +13,48 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title class="title font-weight-light">{{
+            <v-list-item-title class="title font-weight-light">
+              {{
               user.name
-            }}</v-list-item-title>
+              }}
+            </v-list-item-title>
             <v-list-item-subtitle>{{ user.role }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-          :to="item.url"
-        >
-          <v-list-item-icon>
-            <v-icon color="white">{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+        <div v-if="user.role == 'Employee'">
+          <v-list-item v-for="item in employeeItems" :key="item.title" link :to="item.url">
+            <v-list-item-icon>
+              <v-icon color="white">{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title class="subtitle text-uppercase">{{
-              item.title
-            }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="subtitle text-uppercase">
+                {{
+                item.title
+                }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
+        <div v-else>
+          <v-list-item v-for="item in items" :key="item.title" link :to="item.url">
+            <v-list-item-icon>
+              <v-icon color="white">{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title class="subtitle text-uppercase">
+                {{
+                item.title
+                }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn block>Logout</v-btn>
+          <v-btn @click="signOut()" block>Logout</v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -64,16 +74,17 @@ import {
   mdiMenuRight as right,
   mdiNotebook as attendance,
   mdiHome as Home,
-  mdiAccountBoxMultiple as users,
+  mdiAccountBoxMultiple as users
 } from "@mdi/js";
 import sidebar from "../assets/sidebar-2.jpg";
+import { signout } from "../utilities/backend";
 export default {
   name: "App",
   components: {},
   computed: {
     user() {
       return this.$store.getters.getUser;
-    },
+    }
   },
   data: () => ({
     right,
@@ -86,11 +97,17 @@ export default {
       { title: "EMPLOYEES", icon: employees, url: "/" },
       { title: "ATTENDANCE", icon: attendance, url: "/attendance" },
       { title: "USERS", icon: users, url: "/users" },
+      { title: "DEPARTMENTS", icon: users, url: "/departments" }
     ],
-    employeeItems: [{ title: "Home", icon: Home, url: "/home" }],
+    employeeItems: [{ title: "Home", icon: Home, url: "/home" }]
   }),
-  methods: {},
+  methods: {
+    signOut() {
+      signout();
+    }
+  }
 };
 </script>
+
 
 <style></style>

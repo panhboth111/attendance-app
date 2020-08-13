@@ -1,18 +1,14 @@
 <template>
   <v-container fluid>
-    <v-btn class="mb-5" color="blue-grey" small dark>ADD USER</v-btn>
-    <Datatable
-      :items="users"
-      :headers="headers"
-      :search="search"
-      title="USERS"
-    ></Datatable>
+    <v-btn class="mb-5" color="blue-grey" small dark link to="/add">ADD USER</v-btn>
+    <Datatable :items="users" :headers="headers" :search="search" title="USERS"></Datatable>
   </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
 import Datatable from "../components/Datatable";
+
 export default {
   name: "Home",
   components: { Datatable },
@@ -21,25 +17,26 @@ export default {
       {
         name: "Neak Panhboth",
         role: "Alpha Admin",
-        id: "1",
+        id: "1"
       },
       {
         name: "Heng Mouyleng",
         department: "Admin",
-        id: "2",
+        id: "2"
       },
       {
         name: "Nareth MarchVenmey",
         department: "Employee",
-        id: "3",
-      },
+        id: "3"
+      }
     ],
     headers: [
       { text: "id", value: "id" },
       { text: "name", value: "name" },
-      { text: "role", value: "role" },
+      { text: "role", value: "role" }
     ],
-    search: "",
+    search: ""
   }),
+  methods: {}
 };
 </script>
