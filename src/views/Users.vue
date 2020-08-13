@@ -1,10 +1,11 @@
 <template>
   <v-container fluid>
+    <v-btn class="mb-5" color="blue-grey" small dark>ADD USER</v-btn>
     <Datatable
       :items="users"
       :headers="headers"
       :search="search"
-      title="EMPLOYEES"
+      title="USERS"
     ></Datatable>
   </v-container>
 </template>
@@ -19,28 +20,24 @@ export default {
     users: [
       {
         name: "Neak Panhboth",
-        department: "S.E",
-        employee_id: "1101801031",
-        absents: 12,
+        role: "Alpha Admin",
+        id: "1",
       },
       {
         name: "Heng Mouyleng",
-        department: "S.E",
-        employee_id: "1234",
-        absents: 99,
+        department: "Admin",
+        id: "2",
       },
       {
         name: "Nareth MarchVenmey",
-        department: "S.E",
-        employee_id: "1101801030",
-        absents: 99,
+        department: "Employee",
+        id: "3",
       },
     ],
     headers: [
-      { text: "id", value: "employee_id" },
+      { text: "id", value: "id" },
       { text: "name", value: "name" },
-      { text: "department", value: "department" },
-      { text: "absents", value: "absents" },
+      { text: "role", value: "role" },
     ],
     search: "",
   }),
