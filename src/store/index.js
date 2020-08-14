@@ -14,10 +14,7 @@ export default new Vuex.Store({
   },
   actions: {
     async setUser({ commit }) {
-      console.log("hiiii");
       const user = await getUser();
-      console.log("user");
-      console.log(user);
       commit("SET_USER", user);
     },
   },

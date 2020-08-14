@@ -3,7 +3,6 @@ import cookie from "./cookie";
 const baseURL = "http://18.191.133.167:3000";
 //auth
 export const signin = async (signinUser) => {
-  console.log(signinUser);
   const response = await axios.post(`${baseURL}/auth/login`, signinUser);
   alert(response.data.message);
   if (response.data.success) {

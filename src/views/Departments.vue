@@ -15,18 +15,17 @@ export default {
     departments: [],
     headers: [
       { text: "id", value: "_id" },
-      { text: "name", value: "department_name" }
+      { text: "name", value: "department_name" },
     ],
-    search: ""
+    search: "",
   }),
   methods: {
     async get_departments() {
       this.departments = await getDepartments();
-      console.log(this.departments);
-    }
+    },
   },
   created() {
     this.get_departments();
-  }
+  },
 };
 </script>
