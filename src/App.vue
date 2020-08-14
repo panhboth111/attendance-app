@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <AppBar v-if="$router.name !== 'login' && userFetched" />
-    <v-content v-if="userFetched">
+    <AppBar v-if="loadpage" />
+    <v-content v-if="loadpage">
       <router-view></router-view>
     </v-content>
   </v-app>
@@ -19,15 +19,20 @@ export default {
 
   data: () => ({
     user: null,
-    userFetched: false
+    loadpage: false,
+    userfetched: false
   }),
   methods: {
     async getUser() {
       if (this.$route.name !== "login") {
         await this.$store.dispatch("setUser");
         this.user = this.$store.state.user;
-        this.userFetched = true;
+        this.userfetched = true;
       }
+    },
+    load() {
+      if (this.$route.name == "login") this.loadpage = true;
+      if (this.$route.name != "login" && this.userfetched) this.loadpage = true;
     },
     authorization() {
       const auth_token = cookie.getCookie("auth-token");
@@ -49,6 +54,7 @@ export default {
   },
   async created() {
     await this.getUser();
+    await this.load();
     await this.authorization();
     console.log(this.$store.state.user);
   }
